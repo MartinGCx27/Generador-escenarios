@@ -1,0 +1,178 @@
+/* Overall style */
+* {
+	/* margin: 0; */
+	/* padding: 0; */
+	font-family: "Roboto", sans-serif;
+	font-size: 17px;
+	box-sizing: border-box;
+	font-weight: 700;
+}
+label {
+	color: var(--content-color-text);
+}
+body {
+	background-color: var(--main-background-color);
+}
+:root {
+	--main-color: #082045;
+	--main-color-hover: #103f89;
+	--main-accent-hover: #00a3a3;
+	--main-color-text: #ffffff;
+	--content-color-text: #121212;
+	--main-background-color: #e5e5e5;
+	--main-accent-color: #008484;
+	--secondary-accent-color: #1a64db;
+	--green: #006b3e;
+	--yellow: #ffe733;
+	--orange: #ff8c01;
+	--red: #ed2938;
+}
+#vacation-input {
+	display: none;
+}
+/* Table style */
+#table {
+	width: 1500px;
+}
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+/* Allow background color to fill the whole header cell */
+.tabulator-col-content {
+	padding: 0 !important;
+}
+/* Disable row hover effect */
+.tabulator .tabulator-row.tabulator-selectable:hover {
+	background-color: rgba(0, 0, 0, 0);
+	cursor: default;
+}
+/* Allow background color to fill the whole cell */
+/* .tabulator-cell {
+	padding: 1% !important;
+} */
+th {
+	min-width: 84px;
+}
+td {
+	text-align: center;
+}
+/* Not margin on cell title */
+.tabulator-col-title p {
+	margin: 0;
+}
+.tabulator-col {
+	height: 50px;
+}
+.tabulator {
+	font-size: 12px;
+}
+/* Header styling */
+#header {
+	background-color: var(--main-color);
+	color: var(--main-color-text);
+}
+#title * {
+	/* padding: 10px; */
+	margin: 0;
+}
+#title p {
+	font-size: 16px;
+	padding-bottom: 7px;
+}
+#title h1 {
+	font-size: 48px;
+	padding-top: 7px;
+	margin-bottom: 8px;
+}
+.btn {
+	width: 100%;
+	font-weight: 700;
+}
+.btn:focus {
+	outline: 0;
+	box-shadow: 0 0 0 0.25rem rgb(23 95 202 / 0%);
+}
+#generate-btn {
+	background-color: var(--main-color);
+	color: var(--main-color-text);
+}
+#generate-btn:hover {
+	background-color: var(--main-color-hover);
+	color: var(--main-color-text);
+}
+#download-btn {
+	background-color: var(--main-color-text);
+	color: var(--content-color-text);
+	border: 2px solid var(--main-color);
+}
+#download-btn:hover {
+	border: 2px solid var(--secondary-accent-color);
+	color: var(--secondary-accent-color);
+}
+#vacation-label {
+	background-color: var(--main-accent-color);
+	color: var(--main-color-text);
+	/* margin-bottom: 5px; */
+}
+#vacation-label:hover {
+	background-color: var(--main-accent-hover);
+	color: var(--main-color-text);
+}
+.control-card {
+	background-color: var(--main-color-text);
+	border-radius: 5px;
+	padding: 20px;
+	margin-top: 41px;
+}
+.form-group {
+	margin-bottom: 8px;
+}
+caption {
+	caption-side: top;
+	text-align: center;
+	color: var(--content-color-text);
+}
+.content {
+	margin-top: 60px;
+}
+.table-container {
+	margin-bottom: 10px;
+}
+table {
+	margin-bottom: 20px;
+}
+.content h3 {
+	font-weight: 700;
+}
+table * {
+	padding: 5px;
+}
+.circle-green {
+	height: 17px;
+	width: 17px;
+	background-color: var(--green);
+	border-radius: 100%;
+}
+.circle-yellow {
+	height: 17px;
+	width: 17px;
+	background-color: var(--yellow);
+	border-radius: 100%;
+}
+.circle-orange {
+	height: 17px;
+	width: 17px;
+	background-color: var(--orange);
+	border-radius: 100%;
+}
+.circle-red {
+	height: 17px;
+	width: 17px;
+	background-color: var(--red);
+	border-radius: 100%;
+}
+.hidden-div {
+	visibility: collapse;
+}

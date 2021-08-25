@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Generador de Escenarios</title>
+		<link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="index.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+		<script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+		<link href="https://unpkg.com/tabulator-tables/dist/css/tabulator_simple.min.css" rel="stylesheet" />
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+		<script src="lib/papaparse.min.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid" id="header">
+			<div class="container">
+				<div class="row">
+					<div class="col" id="title">
+						<h1>Generador de escenarios</h1>
+						<p>Introduce los datos de semáforo covid-19 y obtén posibles escenarios de visitas a sucursales</p>
+					</div>
+					<div class="col d-flex justify-content-end">
+						<img src="img/bbva.png" alt="logo bbva" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<div class="control-card">
+						<div class="row">
+							<div class="form-group">
+								<label for="cr-input">Número de sucursales:</label>
+								<input type="number" class="form-control" id="cr-input" min="1" value="1" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<div class="form-group">
+									<div class="circle-group d-flex justify-content-between align-items-center">
+										<label id="gl" for="green-input">Sucursales en verde:</label>
+										<div class="circle-green"></div>
+									</div>
+									<input type="number" class="form-control" id="green-input" min="0" value="0" />
+								</div>
+								<div class="form-group">
+									<div class="circle-group d-flex justify-content-between align-items-center">
+										<label id="yl" for="yellow-input">Sucursales en amarillo:</label>
+										<div class="circle-yellow"></div>
+									</div>
+									<input type="number" class="form-control" id="yellow-input" min="0" value="0" />
+								</div>
+								<div class="form-group">
+									<div class="circle-group d-flex justify-content-between align-items-center">
+										<label id="ol" for="orange-input">Sucursales en naranja:</label>
+										<div class="circle-orange"></div>
+									</div>
+									<input type="number" class="form-control" id="orange-input" min="0" value="0" />
+								</div>
+								<div class="form-group">
+									<div class="circle-group d-flex justify-content-between align-items-center">
+										<label id="rl" for="red-input">Sucursales en rojo:</label>
+										<div class="circle-red"></div>
+									</div>
+									<input type="number" class="form-control" id="red-input" min="0" value="0" />
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="form-group">
+									<label for="green-rule">Intervalo de visita:</label>
+									<input type="number" class="form-control" id="green-rule" min="0" value="0" />
+								</div>
+								<div class="form-group">
+									<label for="yellow-rule">Intervalo de visita:</label>
+									<input type="number" class="form-control" id="yellow-rule" min="0" value="5" />
+								</div>
+								<div class="form-group">
+									<label for="orange-rule">Intervalo de visita:</label>
+									<input type="number" class="form-control" id="orange-rule" min="0" value="7" />
+								</div>
+								<div class="form-group">
+									<label for="red-rule">Intervalo de visita:</label>
+									<input type="number" class="form-control" z id="red-rule" min="0" value="10" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<div class="form-switch form-check">
+									<label class="form-check-label" for="toggle-percent">Calcular porcentajes</label>
+									<input class="form-check-input" type="checkbox" id="toggle-percent" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="control-card">
+						<div class="row">
+							<div class="form-group">
+								<label for="starting-month">Mes de inicio:</label>
+								<input class="form-control" type="month" id="starting-month" min="2021-01" max="2022-12" value="2021-01" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<label for="consultant-input">Número de agentes:</label>
+								<input class="form-control" type="number" id="consultant-input" min="1" max="100" value="1" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<label for="empty-start-days">Días deshabilitados a principio de mes:</label>
+								<input class="form-control" type="number" id="empty-start-days" min="1" max="31" value="0" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<div class="form-switch form-check">
+									<label id="days-lbl" class="form-check-label" for="toggle-remotes">Llenar con días bloqueados</label>
+									<input class="form-check-input" type="checkbox" id="toggle-remotes" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<label id="vacation-label" class="btn" for="vacation-input">Subir archivo CSV</label>
+								<input type="file" id="vacation-input" multiple="false" accept=".csv" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<button class="btn" id="generate-btn">Generar escenario</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<button class="btn" id="download-btn">Descargar meses</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div id="html-tbl-cont"></div> -->
+		<div class="content" id="content"></div>
+		<script src="table-config.js"></script>
+		<script src="calendar-utils.js"></script>
+		<script src="index.js"></script>
+	</body>
+</html>
